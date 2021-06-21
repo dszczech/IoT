@@ -1,0 +1,15 @@
+{
+  "info": {
+    "title": "ProjektDb",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 12
+  },
+  "definitions": {},
+  "paths": {},
+  "basePath": "/odata/ProjektDb",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}
