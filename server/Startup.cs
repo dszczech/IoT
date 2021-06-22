@@ -18,6 +18,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Projekt.Data;
+using Projekt.Models;
+using Projekt.Authentication;
 using Radzen;
 namespace Projekt
 {
@@ -51,7 +56,27 @@ namespace Projekt
             });
 
             services.AddHttpClient();
+            services.AddAuthentication();
+            services.AddAuthorization();
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("ProjektDbConnection"));
+            }, ServiceLifetime.Transient);
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                  .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>,
+                  ApplicationPrincipalFactory>();
+            services.AddScoped<SecurityService>();
+            services.AddScoped<ProjektDbService>();
+
+            services.AddDbContext<Projekt.Data.ProjektDbContext>(options =>
+            {
+              options.UseSqlServer(Configuration.GetConnectionString("ProjektDbConnection"));
+            });
+
+            services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddServerSideBlazor().AddHubOptions(o =>
             {
@@ -62,13 +87,14 @@ namespace Projekt
             services.AddScoped<NotificationService>();
             services.AddScoped<TooltipService>();
             services.AddScoped<ContextMenuService>();
+            services.AddScoped<GlobalsService>();
             OnConfigureServices(services);
         }
 
         partial void OnConfigure(IApplicationBuilder app, IWebHostEnvironment env);
         partial void OnConfiguring(IApplicationBuilder app, IWebHostEnvironment env);
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationIdentityDbContext identityDbContext)
         {
             OnConfiguring(app, env);
             if (env.IsDevelopment())
@@ -87,12 +113,19 @@ namespace Projekt
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            identityDbContext.Database.Migrate();
 
             OnConfigure(app, env);
         }

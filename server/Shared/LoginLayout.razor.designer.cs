@@ -3,9 +3,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using Microsoft.AspNetCore.Identity;
+using Projekt.Models;
 using Projekt.Pages;
 
 namespace Projekt.Layouts
@@ -26,7 +29,31 @@ namespace Projekt.Layouts
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
+        [Inject]
+        protected AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+        [Inject]
+        protected SecurityService Security { get; set; }
+
+        [Inject]
+        protected ProjektDbService ProjektDb { get; set; }
+
         protected RadzenBody body0;
 
+        private void Authenticated()
+        {
+             StateHasChanged();
+        }
+
+        protected override async System.Threading.Tasks.Task OnInitializedAsync()
+        {
+             if (Security != null)
+             {
+                  Security.Authenticated += Authenticated;
+
+                  await Security.InitializeAsync(AuthenticationStateProvider);
+             }
+        }
     }
 }

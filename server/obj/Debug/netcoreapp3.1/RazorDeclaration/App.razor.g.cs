@@ -33,16 +33,21 @@ using Microsoft.AspNetCore.Components.Web;
 #line default
 #line hidden
 #line 5 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
-using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #line 6 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
-using Projekt.Shared;
+using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #line 7 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
+using Projekt.Shared;
+
+#line default
+#line hidden
+#line 8 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
 using Radzen;
 
 #line default

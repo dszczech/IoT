@@ -33,11 +33,16 @@ using Microsoft.AspNetCore.Components.Web;
 #line default
 #line hidden
 #line 5 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
-using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #line 6 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
+using Microsoft.JSInterop;
+
+#line default
+#line hidden
+#line 7 "C:\Users\Admin\Desktop\Projekt\server\_Imports.razor"
 using Projekt.Shared;
 
 #line default
@@ -49,6 +54,16 @@ using Radzen;
 #line hidden
 #line 4 "C:\Users\Admin\Desktop\Projekt\server\Shared\LoginLayout.razor"
 using Radzen.Blazor;
+
+#line default
+#line hidden
+#line 5 "C:\Users\Admin\Desktop\Projekt\server\Shared\LoginLayout.razor"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#line 6 "C:\Users\Admin\Desktop\Projekt\server\Shared\LoginLayout.razor"
+using Projekt.Models;
 
 #line default
 #line hidden

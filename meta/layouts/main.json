@@ -36,7 +36,20 @@
             {
               "class": "col-6 text-right",
               "name": "rightCol",
-              "type": "col"
+              "type": "col",
+              "components": [
+                {
+                  "type": "profilemenu",
+                  "name": "profilemenu0",
+                  "visible": "${Security.IsAuthenticated()}",
+                  "template": [
+                    {
+                      "email": "${Security.User?.Name}",
+                      "type": "gravatar"
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "name": "headerRow",

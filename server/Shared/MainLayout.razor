@@ -2,6 +2,8 @@
 
 @using Radzen
 @using Radzen.Blazor
+@using Microsoft.AspNetCore.Identity;
+@using Projekt.Models
 <RadzenDialog />
 <RadzenNotification />
 <RadzenTooltip />
@@ -17,6 +19,22 @@
         </RadzenLabel>
       </div>
       <div class="col-6 text-right">
+        <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@Profilemenu0Click">
+          <ChildContent>
+            <RadzenProfileMenuItem Path="profile" Icon="settings" Text="Profile" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            </RadzenProfileMenuItem>
+            <RadzenProfileMenuItem Path="application-users" Icon="person" Text="Users" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            </RadzenProfileMenuItem>
+            <RadzenProfileMenuItem Path="application-roles" Icon="security" Text="Roles" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            </RadzenProfileMenuItem>
+            <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new">
+            </RadzenProfileMenuItem>
+          </ChildContent>
+          <Template>
+            <RadzenGravatar Email="@(Security.User?.Name)">
+            </RadzenGravatar>
+          </Template>
+        </RadzenProfileMenu>
       </div>
     </div>
   </ChildContent>

@@ -1,20 +1,56 @@
 {
+  "cssFiles": [],
   "dataSources": [
     "ProjektDb"
   ],
   "generator": "@radzen/blazor-server",
   "https": false,
+  "ignore": [
+    ""
+  ],
+  "javaScriptFiles": [],
   "layouts": [
     "Login",
     "Main"
   ],
   "logo": "",
   "name": "Projekt",
+  "namespaces": [],
   "navigation": [],
-  "pages": [],
+  "pages": [
+    "Login",
+    "Add Application Role",
+    "Register Application User",
+    "Application Users",
+    "Application Roles",
+    "Add Application User",
+    "Unauthorized",
+    "Profile",
+    "Edit Application User"
+  ],
+  "port": 8000,
+  "security": {
+    "autoGeneratePages": true,
+    "dataSource": "ProjektDb",
+    "duration": 5,
+    "emailConfirmation": false,
+    "layout": "Main",
+    "loginLayout": "Login",
+    "loginPage": "Login",
+    "provider": "default",
+    "sessionRefresh": false,
+    "smtpFrom": "",
+    "smtpPassword": "",
+    "smtpSSL": false,
+    "smtpServer": "",
+    "smtpUser": ""
+  },
   "serverLang": "cs",
+  "serverPort": 5000,
   "serverProject": true,
   "serverVersion": "3",
   "startPage": null,
-  "theme": "default"
+  "theme": "software",
+  "themeSettings": null,
+  "title": "Projekt"
 }
