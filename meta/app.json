@@ -16,7 +16,9 @@
   "logo": "",
   "name": "Projekt",
   "namespaces": [],
-  "navigation": [],
+  "navigation": [
+    "TicTacToe"
+  ],
   "pages": [
     "Login",
     "Add Application Role",
@@ -26,7 +28,8 @@
     "Add Application User",
     "Unauthorized",
     "Profile",
-    "Edit Application User"
+    "Edit Application User",
+    "TicTacToe"
   ],
   "port": 8000,
   "security": {
@@ -49,7 +52,7 @@
   "serverPort": 5000,
   "serverProject": true,
   "serverVersion": "3",
-  "startPage": null,
+  "startPage": "TicTacToe",
   "theme": "software",
   "themeSettings": null,
   "title": "Projekt"

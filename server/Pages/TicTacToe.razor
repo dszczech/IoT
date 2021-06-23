@@ -1,0 +1,19 @@
+﻿@page "/"
+@page "/tic-tac-toe"
+@layout MainLayout
+@inherits Projekt.Pages.TicTacToeComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Microsoft.AspNetCore.Identity;
+@using Projekt.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="TicTacToe">
+    </RadzenHeading>
+  </ChildContent>
+</RadzenContent>
