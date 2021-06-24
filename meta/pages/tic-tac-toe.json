@@ -1,19 +1,24 @@
 {
-  "name": "TicTacToe",
   "access": "Authenticated",
-  "layout": "Main",
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "heading",
-          "size": "H1",
           "name": "pageTitle",
-          "text": "TicTacToe"
+          "size": "H1",
+          "text": "TicTacToe",
+          "type": "heading"
+        },
+        {
+          "name": "customComponent0",
+          "page": "",
+          "type": "custom-component"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
-  ]
+  ],
+  "layout": "Main",
+  "name": "TicTacToe"
 }

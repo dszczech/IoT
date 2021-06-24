@@ -24,6 +24,8 @@ using Projekt.Data;
 using Projekt.Models;
 using Projekt.Authentication;
 using Radzen;
+using Projekt.Pages;
+
 namespace Projekt
 {
     public partial class Startup
@@ -82,6 +84,9 @@ namespace Projekt
             {
                 o.MaximumReceiveMessageSize = 10 * 1024 * 1024;
             });
+            services.AddSingleton<GameModelService>();
+            services.AddSingleton<GameHub>();
+            services.AddSignalR();
 
             services.AddScoped<DialogService>();
             services.AddScoped<NotificationService>();
@@ -123,6 +128,7 @@ namespace Projekt
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapHub<GameHub>("/gameHub");
             });
 
             identityDbContext.Database.Migrate();

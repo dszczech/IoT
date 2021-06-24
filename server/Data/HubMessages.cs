@@ -1,4 +1,4 @@
-﻿namespace TicTacToe.Data
+﻿namespace Projekt.Pages
 {
     public static class HubMessages
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TicTacToe.Extensions
+namespace Projekt.Pages
 {
     public static class Extensions
     {

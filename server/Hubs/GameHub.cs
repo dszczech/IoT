@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TicTacToe.Data;
-using TicTacToe.Extensions;
 
-namespace TicTacToe.Hubs
+namespace Projekt.Pages
 {
     public class GameHub : Hub
     {

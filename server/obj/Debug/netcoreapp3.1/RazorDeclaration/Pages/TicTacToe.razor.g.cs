@@ -47,32 +47,47 @@ using Projekt.Shared;
 
 #line default
 #line hidden
-#line 6 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+#line 11 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
 using Radzen;
 
 #line default
 #line hidden
-#line 7 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+#line 12 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
-#line 8 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+#line 13 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-#line 9 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+#line 14 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
 using Projekt.Models;
 
 #line default
 #line hidden
-#line 10 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+#line 15 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
-#line 11 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+#line 16 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#line 17 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+using Data;
+
+#line default
+#line hidden
+#line 18 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+using Microsoft.AspNetCore.SignalR.Client;
+
+#line default
+#line hidden
+#line 19 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
            [Authorize]
 
 #line default
@@ -87,6 +102,107 @@ using Microsoft.AspNetCore.Authorization;
         {
         }
         #pragma warning restore 1998
+#line 105 "C:\Users\Admin\Desktop\Projekt\server\Pages\TicTacToe.razor"
+        
+            private HubConnection _hubConnection;
+            private GameModel _gamesettings;
+
+            protected List<string> messages = new List<string>();
+
+            protected override async Task OnInitializedAsync()
+            {
+                _gamesettings = await GameModelService.GetHumanGameBoardAsync();
+                _hubConnection = new HubConnectionBuilder()
+                    .WithUrl(NavigationManager.ToAbsoluteUri("/gameHub"))
+                    .Build();
+
+                _hubConnection.On<GameModel>(ClientEndpoints.ReceiveMessage, (gamesettings) =>
+                {
+                    _gamesettings = gamesettings;
+                    StateHasChanged();
+                });
+
+                _hubConnection.On<GameModel>(ClientEndpoints.EndTurn, async (gamesettings) =>
+                {
+                    if (gamesettings.Botturn)
+                    {
+                        await this.Write($"Turn {gamesettings.TurnCount} - Human Turn Over");
+                    }
+                    else
+                    {
+                        await this.Write($"Turn {gamesettings.TurnCount} - Bot Turn Over.");
+
+                    }
+
+                    await this.Write(Newtonsoft.Json.JsonConvert.SerializeObject(gamesettings.Game, Newtonsoft.Json.Formatting.None));
+
+                    if (!gamesettings.Gameover)
+                    {
+                        _gamesettings = gamesettings;
+                        StateHasChanged();
+                        if (_gamesettings.Botturn)
+                        {
+
+                            await DoBotTurn();
+                        }
+                    }
+                });
+
+                _hubConnection.On<GameModel>(ClientEndpoints.NewHumanGame, (gamesettings) =>
+                {
+                    _gamesettings = gamesettings;
+                    StateHasChanged();
+                });
+
+                _hubConnection.On<GameModel>(ClientEndpoints.NewBotGame, async (gamesettings) =>
+                {
+                    this.messages.Clear();
+                    await this.Write($"Starting New Bot Game");
+                    _gamesettings = gamesettings;
+                    StateHasChanged();
+                });
+
+                _hubConnection.On<GameModel>(ClientEndpoints.GameOver, async (gamesettings) =>
+                {
+                    await this.Write($"Turn {gamesettings.TurnCount} - Game Over.");
+                    await this.Write(Newtonsoft.Json.JsonConvert.SerializeObject(gamesettings.Game, Newtonsoft.Json.Formatting.None));
+                    _gamesettings = gamesettings;
+                    StateHasChanged();
+                });
+
+
+                await _hubConnection.StartAsync();
+            }
+
+            private async Task Write(string message)
+            {
+                this.messages.Add(message);
+                await this.JSRuntime.InvokeVoidAsync("console.log", message);
+            }
+
+            public bool IsConnected => _hubConnection.State == HubConnectionState.Connected;
+            Task Send() => _hubConnection.SendAsync(ServerEndpoints.SendMessage, _gamesettings);
+            Task DoBotTurn() => _hubConnection.SendAsync(ServerEndpoints.TakeBotTurn, _gamesettings);
+            Task NewBotGameClick() => _hubConnection.SendAsync(ServerEndpoints.NewBotGame, _gamesettings);
+            Task NewHumanGameClick() => _hubConnection.SendAsync(ServerEndpoints.NewHumanGame, _gamesettings);
+            Task TakePlayerTurn(int i) => _hubConnection.SendAsync(ServerEndpoints.TakePlayerTurn, i, _gamesettings);
+
+
+            public async Task GameClick(int i)
+            {
+                if (!_gamesettings.Gameover && !_gamesettings.Botturn && string.IsNullOrEmpty(_gamesettings.Game[i]))
+                {
+                    await TakePlayerTurn(i);
+                }
+            } 
+    
+
+#line default
+#line hidden
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private GameHub GameHub { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private GameModelService GameModelService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

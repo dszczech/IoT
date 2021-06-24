@@ -22,9 +22,6 @@ C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.EntityFr
 C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
@@ -113,3 +110,16 @@ C:\Users\Admin\Desktop\Projekt\server\obj\Debug\netcoreapp3.1\Projekt.pdb
 C:\Users\Admin\Desktop\Projekt\server\obj\Debug\netcoreapp3.1\Projekt.genruntimeconfig.cache
 C:\Users\Admin\Desktop\Projekt\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TicTacToe.razor.g.cs
 C:\Users\Admin\Desktop\Projekt\server\obj\Debug\netcoreapp3.1\Razor\Pages\TicTacToe.razor.g.cs
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Connections.Client.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Connections.Common.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Client.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Client.Core.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Common.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\Admin\Desktop\Projekt\server\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace TicTacToe.Data
+namespace Projekt.Pages
 {
     public class GameModel
     {

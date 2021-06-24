@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace TicTacToe.Data
+namespace Projekt.Pages
 {
     public class GameModelService
     {
